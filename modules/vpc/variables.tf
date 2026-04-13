@@ -3,7 +3,7 @@ variable "project_name" {
   type        = string
 }
 
- variable "vpc_cidr" {
+variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
 }
@@ -21,4 +21,9 @@ variable "private_subnet_cidrs" {
 variable "availability_zones" {
   description = "Availability zones for subnets"
   type        = list(string)
+}
+
+variable "cluster_name" {
+  description = "EKS cluster name, used to tag subnets for load balancer discovery"
+  type        = string
 }
