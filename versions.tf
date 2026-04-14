@@ -1,6 +1,14 @@
 terraform {
   required_version = ">= 1.0"
 
+  backend "s3" {
+    bucket         = "eks-platform-tfstate-agustin"
+    key            = "terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "eks-platform-tfstate-lock"
+    encrypt        = true
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
