@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Read(///wsl.localhost/Ubuntu/home/**)",
-      "Read(///wsl.localhost/Ubuntu/home/codeodata/**)"
-    ]
-  }
-}

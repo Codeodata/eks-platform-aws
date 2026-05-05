@@ -8,3 +8,5 @@ terraform.tfvars
 
 # OS
 .DS_Store
+.claude/
+script-borrado.sh

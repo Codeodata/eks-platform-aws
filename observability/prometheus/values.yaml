@@ -1,0 +1,41 @@
+grafana:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    retention: 7d
+
+alertmanager:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+nodeExporter:
+  enabled: true
+
+additionalPrometheusRulesMap:
+  cpu-alerts:
+    groups:
+      - name: cpu-alerts
+        rules:
+          - alert: HighCPUUsage
+            expr: rate(container_cpu_usage_seconds_total[5m]) > 0.8
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: High CPU usage detected
+              description: CPU usage is above 80%
+  pod-alerts:
+    groups:
+      - name: pod-alerts
+        rules:
+          - alert: PodRestartingTooOften
+            expr: increase(kube_pod_container_status_restarts_total[5m]) > 3
+            for: 5m
+            labels:
+              severity: critical
+            annotations:
+              summary: Pod restarting frequently
+              description: Pod restarted more than 3 times
